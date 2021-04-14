@@ -1,0 +1,350 @@
+body{
+}
+
+.bodyBack {
+    color: white;
+}
+
+.bodyPicture {
+}
+
+.linkOption {
+    color: white;
+    font-size: 10px;
+    margin-top: 10px;
+}
+
+.rowText {
+    border: none;
+    color: white;
+    margin-top: 3px;
+    border-radius: 0;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    display: flex;
+}
+
+.buttonInRow {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 30px;
+}
+
+.rowButton {
+    justify-content: center;
+    border: none;
+    color: white;
+    margin-top: 3px;
+    border-radius: 0;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    display: flex;
+}
+
+
+
+.login {
+    text-align: center;
+    justify-content: center;
+    color: white;
+}
+
+#fon {
+    border: 10px white;
+    margin-top: 150px;
+    text-align: center;
+    flex-direction: row;
+}
+
+h3 {
+    font-family: Source Sans Pro;
+    font-size: 24px !important;
+    font-style: normal !important;
+    font-weight: bold;
+    line-height: 18px !important;
+    letter-spacing: 0em !important;
+    text-align: center !important;
+    color: white !important;
+    margin-top: 40px;
+}
+h6 {
+    flex-direction: row;
+}
+
+.textRedactor {
+    font-size: 14px;
+    flex-direction: row;
+    width: 350px;
+}
+
+.text{
+    font-size: 14px;
+    flex-direction: row;
+    color: white;
+    margin-left: 15px;
+}
+
+#colorHidden {
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+    flex-direction: row;
+    color: #6F6F6F;
+    text-align: center;
+}
+
+#location {
+    flex-direction: row;
+    text-align: center !important;
+}
+
+.auth {
+    color: white;
+    background-color: #00EB75;
+    font-size: 15px;
+
+    height: 40px;
+    width: 330px;
+    left: 0px;
+    top: 0px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.inputField {
+    font-size: 14px;
+    color: #0C0A0B;
+    height: 40px;
+    width: 330px;
+    left: 0px;
+    top: 0px;
+    margin-bottom: 7px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.tableInformation1_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tableInformation1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 50px;
+    grid-row-gap: 40px;
+    width: 80%;
+    padding-bottom: 15px;
+}
+
+.descriptionForm {
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+}
+
+.blockMessage{
+    color: white;
+    font-size: 48px;
+    display: flex;
+    justify-content: center;
+    margin-top: 200px;
+}
+
+.formController {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.formControllerCentre {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.formControllerColumn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+
+.formControllerColumn2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.formColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.textForm1 {
+    border: 2px solid white;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.textForm2 {
+    margin-left: 110px;
+    border: 2px solid white;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.readTextSize {
+    font-size: 18px;
+    background-color: white;
+    padding: 30px;
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.textForm3 {
+    margin-top: 70px;
+}
+
+.textForm4 {
+    margin-left: 110px;
+}
+
+
+.position {
+    display: flex;
+    flex-direction: column;
+    margin-left: 110px;
+    border: 2px solid white;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.descriptionAuthor {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.boxColumn {
+    color: white;
+    width: 60%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+}
+
+.descriptionBook {
+    overflow-x: auto;
+    overflow-y: auto;
+    width: 300px; /* Ширина блока */
+    height: 100px; /* Высота блока */
+    /* Поля вокруг текста */
+    border: solid 1px #000083; /* Параметры рамки */
+}
+
+.twoButton {
+     border: none;
+     color: white;
+     justify-content: center;
+     margin-top: 3px;
+     margin-right: 5px;
+     height: 23px !important;
+     border-radius: 0;
+     font-size: 14px !important;
+     font-weight: bold !important;
+ }
+
+.uploadButton {
+    margin: 0;
+    padding: 2rem 1.5rem;
+    font: 1rem/1.5 "PT Sans", Arial, sans-serif;
+    color: #5a5a5a;
+}
+
+.acceptButton {
+    margin-top: 5px;
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 3px;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    font-size: 18px;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+
+
+.textSizeMin {
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+}
+
+.textSize12 {
+    font-size: 12px;
+}
+
+.textColorGray {
+    color: gray;
+}
+
+.commentBox {
+    margin: auto;
+    width: 38%;
+    padding: 10px;
+
+}
+
+.author {
+    box-sizing: content-box;
+}
+
+.textBox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+#marginTop {
+    margin-top: 40px;
+}
+
+::-webkit-scrollbar {
+    width: 3px; /* ширина для вертикального скролла */
+    height: 3px; /* высота для горизонтального скролла */
+    background-color: #0C0A0B;
+}
+
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 9em;
+    box-shadow: inset 1px 1px 10px white;
+}
+
+

@@ -1,0 +1,134 @@
+
+header nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+a {
+    color: white;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.button1 {
+    border: none;
+    color: white;
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 23px !important;
+    width: 56px !important;
+    border-radius: 0;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    display: flex;
+}
+
+.button1:hover {
+    cursor: pointer;
+}
+
+.fade {
+    background-color: #0C0A0B !important;
+}
+
+.button2 {
+    border: none;
+    color: white;
+    justify-content: center;
+    margin-top: 3px;
+    height: 23px !important;
+    width: 56px !important;
+    border-radius: 0;
+    font-size: 14px !important;
+    font-weight: bold !important;
+}
+
+
+
+.picture {
+    margin-left: 150px;
+}
+.finder {
+    margin-top: 15px !important;
+    margin-left: 150px !important;
+    height: 39px !important;
+    width: 410px !important;
+}
+
+.nav-link {
+    vertical-align: middle;
+    border: none;
+    color: white;
+    margin-left: 50px;
+    height: 23px;
+    width: 56px;
+    border-radius: 0;
+    font-size: 14px;
+}
+
+.bg-color {
+    background-color: black;
+}
+
+.hameleonColor {
+    background-color: transparent;
+}
+
+.bg-image {
+    background-image: url(img/temp.jpg);
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-imageRU {
+    background-image: url(img/blockedbookru.jpg);
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-imageEU {
+    background-image: url(img/blockedeu.jpg);
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-image2 {
+    background-image: url(img/temp.jpg);
+    background-size: cover;
+}
+
+.collapse {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #0C0A0B;
+}
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: .5rem;
+    padding-top: 0rem;
+    padding-left: .5rem;
+}
+.textform1{
+
+
+}
+
+
+
