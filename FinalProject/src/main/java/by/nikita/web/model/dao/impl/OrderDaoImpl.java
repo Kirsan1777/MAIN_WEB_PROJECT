@@ -16,7 +16,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * The {@code OrderDaoImpl} class represents Order DaoImpl.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class OrderDaoImpl implements OrderDAO {
 
     private static final OrderDaoImpl instance = new OrderDaoImpl();
