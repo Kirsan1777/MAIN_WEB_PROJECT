@@ -12,6 +12,12 @@ import by.nikita.web.model.service.BookService;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The {@code BookServiceImpl} class represents Book Service Implements.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class BookServiceImpl implements BookService {
     private static final BookServiceImpl instance = new BookServiceImpl();
 
