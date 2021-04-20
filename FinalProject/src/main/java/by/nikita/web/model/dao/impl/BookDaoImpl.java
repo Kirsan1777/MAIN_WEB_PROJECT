@@ -12,6 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * The {@code BookDaoImpl} class represents BookDaoImpl.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class BookDaoImpl implements BookDAO {
     private static final BookDaoImpl instance = new BookDaoImpl();
 
