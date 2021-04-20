@@ -9,8 +9,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-
+/**
+ * The {@code GoToBookPage} class represents book create page.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class GoToBookPage implements Command {
 
     @Override

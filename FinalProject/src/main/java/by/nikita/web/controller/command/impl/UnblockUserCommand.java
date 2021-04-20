@@ -15,7 +15,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+/**
+ * The {@code UnblockUserCommand} class represents unblock user.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class UnblockUserCommand implements Command {
     private static final int UNBLOCKED_USER_PARAMETER = 0;
     private UserServiceImpl userService = UserServiceImpl.getInstance();

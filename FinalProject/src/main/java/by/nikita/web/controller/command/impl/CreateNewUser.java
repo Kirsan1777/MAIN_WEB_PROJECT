@@ -20,7 +20,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.validation.Validator;
 import java.io.IOException;
 import java.sql.Timestamp;
-
+/**
+ * The {@code CreateNewUser} class represents create new user command.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class CreateNewUser implements Command {
     private static final Logger LOGGER = Logger.getLogger(CreateNewUser.class);
     private Transaction transaction = Transaction.getInstance();
@@ -39,12 +44,18 @@ public class CreateNewUser implements Command {
         user.setDateRegistration(stamp.toString());
         try {
             //TODO 2 сообщения, а не одно
-            if(validator.validateUser(user.getLogin(), user.getEmail()) && userService.findUserByLogin(user.getLogin()) == null) {
-                transaction.createAccountUserAndBank(user);
-                requestDispatcher = request.getRequestDispatcher(PagePath.MAIN_INDEX_PAGE_COMMAND);
-                requestDispatcher.forward(request, response);
+            if(validator.validateUser(user.getLogin(), user.getEmail())) {
+                if(userService.findUserByLogin(user.getLogin()) == null){
+                    transaction.createAccountUserAndBank(user);
+                    requestDispatcher = request.getRequestDispatcher(PagePath.MAIN_INDEX_PAGE_COMMAND);
+                    requestDispatcher.forward(request, response);
+                }else{
+                    request.setAttribute(Attribute.MESSAGE, Message.THIS_LOGIN_IS_ALREADY_USED);
+                    requestDispatcher = request.getRequestDispatcher(PagePath.REGISTRATION_PAGE);
+                    requestDispatcher.forward(request, response);
+                }
             }else{
-                request.setAttribute(Attribute.MESSAGE, Message.THIS_LOGIN_IS_ALREADY_USED);
+                request.setAttribute(Attribute.MESSAGE, Message.INCORRECT_INPUT);
                 requestDispatcher = request.getRequestDispatcher(PagePath.REGISTRATION_PAGE);
                 requestDispatcher.forward(request, response);
             }

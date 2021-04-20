@@ -1,12 +1,21 @@
 package by.nikita.web.model.entity;
 
 import java.util.Objects;
-
+/**
+ * The {@code Order} class represents Order.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class Order {
     private int idUser;
     private int idBook;
     private double cost;
     private int idOrder;
+
+    public Order(){
+
+    }
 
     public int getIdUser() {
         return idUser;

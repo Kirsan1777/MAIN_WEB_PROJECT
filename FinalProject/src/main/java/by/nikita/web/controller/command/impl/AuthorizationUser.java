@@ -8,6 +8,7 @@ import by.nikita.web.exception.ServiceException;
 import by.nikita.web.model.entity.User;
 import by.nikita.web.model.entity.UserRole;
 import by.nikita.web.model.service.impl.UserServiceImpl;
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -16,16 +17,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Date;
-
-
+/**
+ * The {@code AuthorizationUser} class represents authorization user command.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class AuthorizationUser implements Command {
-    private static final Logger LOGGER = Logger.getLogger(AuthorizationUser.class);
+    private static final org.apache.log4j.Logger LOGGER = Logger.getLogger(AuthorizationUser.class);
     private UserServiceImpl userService = UserServiceImpl.getInstance();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         RequestDispatcher requestDispatcher;
         String login = request.getParameter(Attribute.LOGIN);
         String password = request.getParameter(Attribute.PASSWORD);
@@ -46,12 +49,9 @@ public class AuthorizationUser implements Command {
             session.setAttribute(Attribute.ID, user.getId());
             session.setAttribute(Attribute.USER_ROLE, user.getRole());
             response.sendRedirect(PagePath.MAIN_INDEX_PAGE_COMMAND);
-        }catch (ServiceException ex){
+        }catch (ServiceException | ServletException ex){
             response.sendRedirect(PagePath.ERROR_PAGE);
-            LOGGER.warn(ex);
-        } catch (ServletException e) {
-            response.sendRedirect(PagePath.ERROR_PAGE);
-            LOGGER.warn(e);
+            LOGGER.warn("Can't authorization user",ex);
         }
     }
 }

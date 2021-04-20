@@ -11,12 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
+/**
+ * The {@code ChooseLocaleCommand} class represents choose locale.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class ChooseLocaleCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher;
+        //RequestDispatcher requestDispatcher;
         HttpSession session = request.getSession();
         String path = request.getParameter(Attribute.URL);
         String language = (String) session.getAttribute(Attribute.LANGUAGE);
@@ -25,7 +30,8 @@ public class ChooseLocaleCommand implements Command {
         }else{
             session.setAttribute(Attribute.LANGUAGE, Attribute.LANGUAGE_RU);
         }
-        requestDispatcher = request.getRequestDispatcher(PagePath.CONTROLLER + path);
-        requestDispatcher.forward(request, response);
+        //requestDispatcher = request.getRequestDispatcher(PagePath.CONTROLLER + path);
+        //requestDispatcher.forward(request, response);
+        response.sendRedirect(PagePath.CONTROLLER + path);
     }
 }

@@ -10,7 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
+/**
+ * The {@code GoToBlockPage} class represents blocked user page.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class GoToBlockPage implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

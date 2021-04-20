@@ -2,6 +2,7 @@ package by.nikita.web.model.dao.impl;
 
 import by.nikita.web.exception.ConnectionDataBaseException;
 import by.nikita.web.exception.DaoException;
+import by.nikita.web.model.dao.BankDAO;
 import by.nikita.web.model.dao.ConnectionPool;
 import by.nikita.web.model.dao.query.SqlBankRequest;
 import by.nikita.web.model.dao.query.SqlUserRequest;
@@ -12,18 +13,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class BankDaoImpl {
+public class BankDaoImpl implements BankDAO {
 
     private static final BankDaoImpl instance = new BankDaoImpl();
 
-    private BankDaoImpl(){
+    private BankDaoImpl() {
     }
-
-    public static BankDaoImpl getInstance(){
+    /**
+     * get instance
+     *
+     * @return the instance
+     */
+    public static BankDaoImpl getInstance() {
         return instance;
     }
 
-    public void addBankCard(int idUser) throws DaoException{
+    @Override
+    public void addBankCard(int idUser) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         try (Connection connection = pool.getConnection();
              PreparedStatement statement = connection.prepareStatement(SqlBankRequest.ADD_BANK_CARD)) {
@@ -36,22 +42,21 @@ public class BankDaoImpl {
         }
     }
 
-    public void deleteUserCard(int idUser) throws DaoException{
+    @Override
+    public void deleteUserCard(int idUser) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         try (Connection connection = pool.getConnection();
-             PreparedStatement statement = connection.prepareStatement(SqlBankRequest.DELETE_USER_CARD_BY_ID))
-        {
+             PreparedStatement statement = connection.prepareStatement(SqlBankRequest.DELETE_USER_CARD_BY_ID)) {
             statement.setInt(1, idUser);
             statement.execute();
-        }
-        catch (SQLException ex){
+        } catch (SQLException ex) {
             throw new DaoException("We have problem with connection to db", ex);
-        }
-        catch (ConnectionDataBaseException e){
+        } catch (ConnectionDataBaseException e) {
             throw new DaoException("We have problem with connection pool", e);
         }
     }
 
+    @Override
     public void updateBalance(int idUser, double cost) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         try (Connection connection = pool.getConnection();
@@ -67,7 +72,8 @@ public class BankDaoImpl {
         }
     }
 
-    public double findBalanceById(int idUser) throws DaoException{
+    @Override
+    public double findBalanceById(int idUser) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         double money = 0;
         try (Connection connection = pool.getConnection();
@@ -85,12 +91,10 @@ public class BankDaoImpl {
 
     private double readMoneyOnAccount(ResultSet resultSet) throws SQLException {
         double money = 0;
-        while(resultSet.next()) {
+        while (resultSet.next()) {
             money = resultSet.getInt(1);
         }
         return money;
     }
-
-
 
 }

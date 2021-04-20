@@ -8,7 +8,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+/**
+ * The {@code Registration} class represents registration page.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class Registration implements Command {
 
     @Override

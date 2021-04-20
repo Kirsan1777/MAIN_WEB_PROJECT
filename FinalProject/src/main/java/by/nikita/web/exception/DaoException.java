@@ -1,17 +1,41 @@
 package by.nikita.web.exception;
-
-public class DaoException extends Exception{
+/**
+ * The {@code DaoException} class represents DaoException.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
+public class DaoException extends Exception {
+    /**
+     * create object of class
+     */
     public DaoException() {
     }
 
+    /**
+     * create object of class
+     *
+     * @param message
+     */
     public DaoException(String message) {
         super(message);
     }
 
+    /**
+     * create object of class
+     *
+     * @param message
+     * @param cause
+     */
     public DaoException(String message, Throwable cause) {
         super(message, cause);
     }
 
+    /**
+     * create object of class
+     *
+     * @param cause
+     */
     public DaoException(Throwable cause) {
         super(cause);
     }

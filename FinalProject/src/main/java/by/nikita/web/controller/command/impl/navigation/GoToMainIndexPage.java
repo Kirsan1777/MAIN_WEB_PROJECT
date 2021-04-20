@@ -16,7 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * The {@code GoToMainIndexPage} class represents main page.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class GoToMainIndexPage implements Command {
     private static final Logger LOGGER = Logger.getLogger(GoToMainBookPage.class);
     private UserServiceImpl userService = UserServiceImpl.getInstance();
@@ -38,7 +43,7 @@ public class GoToMainIndexPage implements Command {
         }catch (ServiceException ex){
             requestDispatcher = request.getRequestDispatcher(PagePath.ERROR_PAGE);
             requestDispatcher.forward(request, response);
-            LOGGER.warn("message", ex);
+            LOGGER.warn("Can't go to the main page", ex);
         }
     }
 }

@@ -12,7 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-
+/**
+ * The {@code Controller} class represents Controller.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class Controller extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

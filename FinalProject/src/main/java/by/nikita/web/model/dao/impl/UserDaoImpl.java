@@ -3,6 +3,7 @@ package by.nikita.web.model.dao.impl;
 import by.nikita.web.exception.ConnectionDataBaseException;
 import by.nikita.web.exception.DaoException;
 import by.nikita.web.model.dao.ConnectionPool;
+import by.nikita.web.model.dao.UserDAO;
 import by.nikita.web.model.dao.query.SqlBookRequest;
 import by.nikita.web.model.dao.query.SqlUserRequest;
 
@@ -15,24 +16,30 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class UserDaoImpl{
+public class UserDaoImpl implements UserDAO {
 
     private static final UserDaoImpl instance = new UserDaoImpl();
 
-    private UserDaoImpl(){
+    private UserDaoImpl() {
     }
 
-    public static UserDaoImpl getInstance(){
+    /**
+     * get instance
+     *
+     * @return the instance
+     */
+    public static UserDaoImpl getInstance() {
         return instance;
     }
 
+    @Override
     public void addUser(String login, String password) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         try (Connection connection = pool.getConnection();
-                PreparedStatement statement = connection.prepareStatement(SqlUserRequest.ADD_USER)) {
-                statement.setString(1, login);
-                statement.setString(2, password);
-                statement.executeUpdate();//command from update DB
+             PreparedStatement statement = connection.prepareStatement(SqlUserRequest.ADD_USER)) {
+            statement.setString(1, login);
+            statement.setString(2, password);
+            statement.executeUpdate();//command from update DB
 
         } catch (SQLException ex) {
             throw new DaoException("We have problem with connection to db", ex);
@@ -41,6 +48,7 @@ public class UserDaoImpl{
         }
     }
 
+    @Override
     public List<User> getAllUsers() throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         List<User> users;
@@ -56,12 +64,12 @@ public class UserDaoImpl{
         return users;
     }
 
-
-    public User findUser(String login, String password) throws DaoException{
+    @Override
+    public User findUser(String login, String password) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         User users;
         try (Connection connection = pool.getConnection();
-            PreparedStatement statement = connection.prepareStatement(SqlUserRequest.LOOK_FOR_USER)) {
+             PreparedStatement statement = connection.prepareStatement(SqlUserRequest.LOOK_FOR_USER)) {
             statement.setString(1, login);
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
@@ -74,7 +82,8 @@ public class UserDaoImpl{
         return users;
     }
 
-    public User findUserByName(String login) throws DaoException{
+    @Override
+    public User findUserByName(String login) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         User users;
         try (Connection connection = pool.getConnection();
@@ -90,12 +99,13 @@ public class UserDaoImpl{
         return users;
     }
 
-    public List<User> findBookByNameSort(String name) throws DaoException{
+    @Override
+    public List<User> findUserByNameSort(String name) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         List<User> users;
         try (Connection connection = pool.getConnection();
              PreparedStatement statement = connection.prepareStatement(SqlUserRequest.LOOK_FOR_USER_INFO_BY_NAME)) {
-            statement.setString(1, name+"%");
+            statement.setString(1, name + "%");
             ResultSet resultSet = statement.executeQuery();
             users = readAllUsersInfo(resultSet);
         } catch (SQLException ex) {
@@ -106,7 +116,8 @@ public class UserDaoImpl{
         return users;
     }
 
-    public List<User> getAllUsersInfo() throws DaoException{
+    @Override
+    public List<User> getAllUsersInfo() throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         List<User> users;
         try (Connection connection = pool.getConnection();
@@ -121,8 +132,8 @@ public class UserDaoImpl{
         return users;
     }
 
-
-        public User findUserById(int idUser) throws DaoException{
+    @Override
+    public User findUserById(int idUser) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         User users;
         try (Connection connection = pool.getConnection();
@@ -138,9 +149,9 @@ public class UserDaoImpl{
         return users;
     }
 
-    private User readUsers(ResultSet resultSet) throws SQLException{
+    private User readUsers(ResultSet resultSet) throws SQLException {
         User users = null;
-        while(resultSet.next()) {
+        while (resultSet.next()) {
             String login = resultSet.getString(1);
             String password = resultSet.getString(2);
             UserRole role = UserRole.valueOf(resultSet.getString(3).toUpperCase(Locale.ROOT));
@@ -150,10 +161,10 @@ public class UserDaoImpl{
         return users;
     }
 
-    private List<User> readAllUsers(ResultSet resultSet) throws SQLException{
+    private List<User> readAllUsers(ResultSet resultSet) throws SQLException {
         User users;
-        List<User>listWithUsers = new ArrayList<>();
-        while(resultSet.next()) {
+        List<User> listWithUsers = new ArrayList<>();
+        while (resultSet.next()) {
             String login = resultSet.getString(1);
             String password = resultSet.getString(2);
             UserRole role = UserRole.valueOf(resultSet.getString(3).toUpperCase(Locale.ROOT));
@@ -164,7 +175,8 @@ public class UserDaoImpl{
         return listWithUsers;
     }
 
-    public void addUserInfo(int idUser, String name, String dateRegistration, int rating, String email)throws DaoException{
+    @Override
+    public void addUserInfo(int idUser, String name, String dateRegistration, int rating, String email) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         try (Connection connection = pool.getConnection();
              PreparedStatement statement = connection.prepareStatement(SqlUserRequest.ADD_USER_INFO)) {
@@ -176,45 +188,42 @@ public class UserDaoImpl{
             statement.setString(5, email);
             statement.executeUpdate();
 
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             throw new DaoException("We have problem with connection to db", ex);
         } catch (ConnectionDataBaseException e) {
             throw new DaoException("We have problem with connection pool", e);
         }
     }
 
-    public void deleteUser(int idUser) throws DaoException{
+    @Override
+    public void deleteUser(int idUser) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         try (Connection connection = pool.getConnection();
-            PreparedStatement statement = connection.prepareStatement(SqlUserRequest.DELETE_USER_BY_ID))
-        {
+             PreparedStatement statement = connection.prepareStatement(SqlUserRequest.DELETE_USER_BY_ID)) {
             statement.setInt(1, idUser);
             statement.execute();
-        }
-        catch (SQLException ex){
+        } catch (SQLException ex) {
             throw new DaoException("We have problem with connection to db", ex);
-        }
-        catch (ConnectionDataBaseException e){
+        } catch (ConnectionDataBaseException e) {
             throw new DaoException("We have problem with connection pool", e);
         }
     }
 
-    public void deleteUserInfo(int idUser) throws DaoException{
+    @Override
+    public void deleteUserInfo(int idUser) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         try (Connection connection = pool.getConnection();
-             PreparedStatement statement = connection.prepareStatement(SqlUserRequest.DELETE_USER_INFO_BY_ID))
-        {
+             PreparedStatement statement = connection.prepareStatement(SqlUserRequest.DELETE_USER_INFO_BY_ID)) {
             statement.setInt(1, idUser);
             statement.execute();
-        }
-        catch (SQLException ex){
+        } catch (SQLException ex) {
             throw new DaoException("We have problem with connection to db", ex);
-        }
-        catch (ConnectionDataBaseException e){
+        } catch (ConnectionDataBaseException e) {
             throw new DaoException("We have problem with connection pool", e);
         }
     }
 
+    @Override
     public void updateUserRole(int idUser, int idRole) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         try (Connection connection = pool.getConnection();
@@ -230,8 +239,8 @@ public class UserDaoImpl{
         }
     }
 
-
-    public User findUserInfoById(int idUser) throws DaoException{
+    @Override
+    public User findUserInfoById(int idUser) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         User users;
         try (Connection connection = pool.getConnection();
@@ -247,7 +256,8 @@ public class UserDaoImpl{
         return users;
     }
 
-    public List<User> findUserInfoByName(String name) throws DaoException{
+    @Override
+    public List<User> findUserInfoByName(String name) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         List<User> users;
         try (Connection connection = pool.getConnection();
@@ -263,37 +273,38 @@ public class UserDaoImpl{
         return users;
     }
 
-    private User readUsersIfo(ResultSet resultSet) throws SQLException{
+    private User readUsersIfo(ResultSet resultSet) throws SQLException {
         User users = null;
-        while(resultSet.next()) {
+        while (resultSet.next()) {
             int id = resultSet.getInt(1);
             String name = resultSet.getString(2);
             int rating = resultSet.getInt(4);
             String dateRegistration = resultSet.getString(3);
             String email = resultSet.getString(6);
             String picture = resultSet.getString(5);
-            users = new User(id, name, dateRegistration, rating, email,  picture);
+            users = new User(id, name, dateRegistration, rating, email, picture);
         }
         return users;
     }
 
-    private List<User> readAllUsersInfo(ResultSet resultSet) throws SQLException{
+    private List<User> readAllUsersInfo(ResultSet resultSet) throws SQLException {
         User user;
         List<User> users = new ArrayList<>();
-        while(resultSet.next()) {
+        while (resultSet.next()) {
             int id = resultSet.getInt(1);
             String name = resultSet.getString(2);
             int rating = resultSet.getInt(4);
             String dateRegistration = resultSet.getString(3);
             String email = resultSet.getString(6);
             String picture = resultSet.getString(5);
-            user = new User(id, name, dateRegistration, rating, email,  picture);
+            user = new User(id, name, dateRegistration, rating, email, picture);
             users.add(user);
         }
         return users;
     }
 
-    public void updatePicture(int idUser, String picture) throws DaoException{
+    @Override
+    public void updatePicture(int idUser, String picture) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         try (Connection connection = pool.getConnection();
              PreparedStatement statement = connection.prepareStatement(SqlUserRequest.UPDATE_PICTURE)) {
@@ -307,7 +318,8 @@ public class UserDaoImpl{
         }
     }
 
-    public void updateUserInfo(User user) throws DaoException{
+    @Override
+    public void updateUserInfo(User user) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         try (Connection connection = pool.getConnection();
              PreparedStatement statement = connection.prepareStatement(SqlUserRequest.UPDATE_USER_INFO)) {
@@ -322,6 +334,7 @@ public class UserDaoImpl{
         }
     }
 
+    @Override
     public List<User> getAllUsersBySort(String sort) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         List<User> users;
@@ -337,7 +350,8 @@ public class UserDaoImpl{
         return users;
     }
 
-    public void updateUserPassword(User user)throws DaoException{
+    @Override
+    public void updateUserPassword(User user) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         try (Connection connection = pool.getConnection();
              PreparedStatement statement = connection.prepareStatement(SqlUserRequest.UPDATE_PASSWORD)) {
@@ -350,7 +364,6 @@ public class UserDaoImpl{
             throw new DaoException("We have problem with connection pool", e);
         }
     }
-
 
 
 }

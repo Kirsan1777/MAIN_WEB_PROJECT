@@ -3,6 +3,7 @@ package by.nikita.web.model.dao.impl;
 import by.nikita.web.exception.ConnectionDataBaseException;
 import by.nikita.web.exception.DaoException;
 import by.nikita.web.model.dao.ConnectionPool;
+import by.nikita.web.model.dao.OrderDAO;
 import by.nikita.web.model.dao.query.SqlBankRequest;
 import by.nikita.web.model.dao.query.SqlBookRequest;
 import by.nikita.web.model.dao.query.SqlOrderRequest;
@@ -16,18 +17,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderDaoImpl {
+public class OrderDaoImpl implements OrderDAO {
 
     private static final OrderDaoImpl instance = new OrderDaoImpl();
     private static final int CODE_DELETED_BOOK = 0;
 
-    private OrderDaoImpl(){
+    private OrderDaoImpl() {
     }
-
-    public static OrderDaoImpl getInstance(){
+    /**
+     * get instance
+     *
+     * @return the instance
+     */
+    public static OrderDaoImpl getInstance() {
         return instance;
     }
 
+    @Override
     public void addOrder(int idUser, int idBook, double cost) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         try (Connection connection = pool.getConnection();
@@ -43,13 +49,14 @@ public class OrderDaoImpl {
         }
     }
 
-    public void updateBookForDelete(int idBook) throws DaoException{
+
+    @Override
+    public void deleteOrders(int idBook) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         try (Connection connection = pool.getConnection();
-             PreparedStatement statement = connection.prepareStatement(SqlOrderRequest.UPDATE_ID_BOOK)) {
-            statement.setInt(1, CODE_DELETED_BOOK);
-            statement.setInt(2, idBook);
-            statement.executeUpdate();
+             PreparedStatement statement = connection.prepareStatement(SqlOrderRequest.DELETE_ORDER_BY_ID_BOOK)) {
+            statement.setInt(1, idBook);
+            statement.execute();
         } catch (SQLException ex) {
             throw new DaoException("We have problem with connection to db", ex);
         } catch (ConnectionDataBaseException e) {
@@ -57,22 +64,7 @@ public class OrderDaoImpl {
         }
     }
 
-    public void deleteOrders(int idBook) throws DaoException{
-        ConnectionPool pool = ConnectionPool.getInstance();
-        try (Connection connection = pool.getConnection();
-             PreparedStatement statement = connection.prepareStatement(SqlOrderRequest.DELETE_ORDER_BY_ID_BOOK))
-        {
-            statement.setInt(1, idBook);
-            statement.execute();
-        }
-        catch (SQLException ex){
-            throw new DaoException("We have problem with connection to db", ex);
-        }
-        catch (ConnectionDataBaseException e){
-            throw new DaoException("We have problem with connection pool", e);
-        }
-    }
-
+    @Override
     public List<Integer> getAllBooksByIdUser(int idUser) throws DaoException {
         ConnectionPool pool = ConnectionPool.getInstance();
         List<Integer> idBooks;
@@ -89,9 +81,9 @@ public class OrderDaoImpl {
         return idBooks;
     }
 
-    private List<Integer> readAllIdBookByIdUser(ResultSet resultSet) throws SQLException{
+    private List<Integer> readAllIdBookByIdUser(ResultSet resultSet) throws SQLException {
         List<Integer> idBooks = new ArrayList<>();
-        while(resultSet.next()) {
+        while (resultSet.next()) {
             int id = resultSet.getInt(1);
             idBooks.add(id);
         }

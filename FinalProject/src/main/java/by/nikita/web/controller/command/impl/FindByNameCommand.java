@@ -18,7 +18,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * The {@code FindByNameCommand} class represents find user by name.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class FindByNameCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(FindByNameCommand.class);
     private BookServiceImpl bookService = BookServiceImpl.getInstance();

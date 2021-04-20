@@ -1,7 +1,12 @@
 package by.nikita.web.model.entity;
 
 import java.util.Objects;
-
+/**
+ * The {@code Book} class represents Book.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class Book {
     private String nameBook;
     private int id;

@@ -14,10 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
+/**
+ * The {@code UpdateBalanceCommand} class represents update balance from user.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class UpdateBalanceCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(UpdateBalanceCommand.class);
-    UserServiceImpl userService = UserServiceImpl.getInstance();
+    private UserServiceImpl userService = UserServiceImpl.getInstance();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,8 +34,9 @@ public class UpdateBalanceCommand implements Command {
         int idUser = (Integer)session.getAttribute(Attribute.ID);
         try {
             userService.updateBalance(idUser, money);
-            requestDispatcher = request.getRequestDispatcher(PagePath.HOME_PAGE_COMMAND);
-            requestDispatcher.forward(request, response);
+            //requestDispatcher = request.getRequestDispatcher(PagePath.HOME_PAGE_COMMAND);
+            response.sendRedirect(PagePath.HOME_PAGE_COMMAND);
+            //requestDispatcher.forward(request, response);
         } catch (ServiceException e) {
             requestDispatcher = request.getRequestDispatcher(PagePath.ERROR_PAGE);
             requestDispatcher.forward(request, response);

@@ -12,10 +12,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+/**
+ * The {@code UnblockBookCommand} class represents unblock book.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class UnblockBookCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(UnblockBookCommand.class);
-    private static final BookServiceImpl bookService = BookServiceImpl.getInstance();
+    private BookServiceImpl bookService = BookServiceImpl.getInstance();
     private static final int UNBLOCKED_BOOK_PARAMETER = 0;
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,7 +32,7 @@ public class UnblockBookCommand implements Command {
             requestDispatcher = request.getRequestDispatcher(PagePath.MAIN_INDEX_PAGE_COMMAND);
             requestDispatcher.forward(request, response);
         }catch (ServiceException ex){
-            LOGGER.warn("Can't block user", ex);
+            LOGGER.warn("Can't unblock book", ex);
             requestDispatcher = request.getRequestDispatcher(PagePath.ERROR_PAGE);
             requestDispatcher.forward(request, response);
         }

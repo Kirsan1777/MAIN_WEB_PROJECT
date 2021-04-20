@@ -19,10 +19,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
-
+/**
+ * The {@code CreateNewBook} class represents create new book command.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class CreateNewBook implements Command {
     private static final Logger LOGGER = Logger.getLogger(CreateNewBook.class);
-    private static BookServiceImpl bookService = BookServiceImpl.getInstance();
+    private BookServiceImpl bookService = BookServiceImpl.getInstance();
     private static final String NAME_BASIC_PICTURE = "basicBook.jpg";
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -18,7 +18,12 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-
+/**
+ * The {@code SortBookCommand} class represents sort all books by criterion.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class SortBookCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(SortBookCommand.class);
     private UserServiceImpl userService = UserServiceImpl.getInstance();

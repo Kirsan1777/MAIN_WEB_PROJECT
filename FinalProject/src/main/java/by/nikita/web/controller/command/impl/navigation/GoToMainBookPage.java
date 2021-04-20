@@ -18,7 +18,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * The {@code GoToMainBookPage} class represents book info page.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class GoToMainBookPage implements Command {
     private static final Logger LOGGER = Logger.getLogger(GoToMainBookPage.class);
     private BookServiceImpl bookService = BookServiceImpl.getInstance();
@@ -43,7 +48,7 @@ public class GoToMainBookPage implements Command {
         } catch (ServiceException e) {
             requestDispatcher = request.getRequestDispatcher(PagePath.ERROR_PAGE);
             requestDispatcher.forward(request, response);
-            LOGGER.warn("Can't block user", e);
+            LOGGER.warn("Can't go to the main book page", e);
         }
     }
 }

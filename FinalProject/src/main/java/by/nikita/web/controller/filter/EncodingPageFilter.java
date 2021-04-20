@@ -4,7 +4,12 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
 import java.io.IOException;
-
+/**
+ * The {@code EncodingPageFilter} class represents Encoding Filter.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 @WebFilter(filterName = "EncodingPageFilter", urlPatterns = {"/*"}, initParams = {
         //Томкат юзает по умолчанию кодировку ISO-8859-1.
         @WebInitParam(name = "encoding", value = "UTF-8", description = "Encoding Param")})

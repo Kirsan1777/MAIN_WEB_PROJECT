@@ -18,7 +18,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
+/**
+ * The {@code BuyBookUser} class represents buy book command.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class BuyBookUser implements Command {
 
     Transaction transaction = Transaction.getInstance();

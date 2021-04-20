@@ -1,7 +1,13 @@
 package by.nikita.web.model.entity;
 
-import java.util.Date;
 import java.util.Objects;
+
+/**
+ * The {@code UserRole} class represents UserRole.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 
 public class User {
     private String login;

@@ -17,11 +17,23 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * The {@code Transaction} class represents transaction.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class Transaction {
     private static final Transaction instance = new Transaction();
-    private Transaction(){
+
+    private Transaction() {
     }
 
+    /**
+     * get instance
+     *
+     * @return the instance
+     */
     public static Transaction getInstance() {
         return instance;
     }
@@ -29,6 +41,11 @@ public class Transaction {
     private static final int MAX_BLOCKED_COMMENTS_TO_BLOCK_USER = 10;
     private static final int BLOCKED_USER_ROLE = 4;
 
+    /**
+     * create for new user account and bank card
+     *
+     * @param user the user
+     */
     public void createAccountUserAndBank(User user) throws TransactionException {
         UserDaoImpl userDao = UserDaoImpl.getInstance();
         BankDaoImpl bankDao = BankDaoImpl.getInstance();
@@ -52,6 +69,12 @@ public class Transaction {
         }
     }
 
+    /**
+     * makes an operation to buy a book
+     *
+     * @param user the user
+     * @param book the book
+     */
     public void buyBook(User user, Book book) throws TransactionException {
         BankDaoImpl bankDao = BankDaoImpl.getInstance();
         OrderDaoImpl orderDao = OrderDaoImpl.getInstance();
@@ -62,14 +85,21 @@ public class Transaction {
             bankDao.updateBalance(user.getId(), book.getCost() * -1);
             bankDao.updateBalance(book.getAuthorId(), book.getCost());
             orderDao.addOrder(user.getId(), book.getId(), book.getCost());
-        }catch (ConnectionDataBaseException | SQLException | DaoException e) {
+        } catch (ConnectionDataBaseException | SQLException | DaoException e) {
             rollbackConnection(connection);
             throw new TransactionException("Can't buy book", e);
-        }finally {
+        } finally {
             closeConnection(connection);
         }
     }
 
+    /**
+     * change state comment
+     *
+     * @param idComment the comment id
+     * @param idUser the user id
+     * @param valueComment the new comment status
+     */
     public void changeStateComment(int idComment, int idUser, int valueComment) throws TransactionException {
         BookDaoImpl bookDao = BookDaoImpl.getInstance();
         UserDaoImpl userDao = UserDaoImpl.getInstance();
@@ -78,17 +108,17 @@ public class Transaction {
             connection = ConnectionPool.getInstance().getConnection();
             connection.setAutoCommit(false);
             User user = userDao.findUserById(idUser);
-            if(user.getRole() != UserRole.ADMIN) {
+            if (user.getRole() != UserRole.ADMIN) {
                 bookDao.updateCommentStatus(idComment, valueComment);
                 List<Comment> bannedComments = bookDao.findCommentsByStatus(idUser);
                 if (bannedComments.size() > MAX_BLOCKED_COMMENTS_TO_BLOCK_USER) {
                     userDao.updateUserRole(idUser, BLOCKED_USER_ROLE);
                 }
             }
-        }catch (ConnectionDataBaseException | SQLException | DaoException e) {
+        } catch (ConnectionDataBaseException | SQLException | DaoException e) {
             rollbackConnection(connection);
             throw new TransactionException("Can't block comment", e);
-        }finally {
+        } finally {
             closeConnection(connection);
         }
     }

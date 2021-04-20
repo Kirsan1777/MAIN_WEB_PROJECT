@@ -1,5 +1,10 @@
 package by.nikita.web.controller.command;
-
+/**
+ * The {@code Attribute} class represents server attributes.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public final class Attribute {
 
     public static final String USER_ROLE = "role";
@@ -41,6 +46,7 @@ public final class Attribute {
     public static final String MESSAGE_BUY = "&message=BUY";
     public static final String MESSAGE_NOT_MONEY = "&message=NOT_MONEY";
     public static final String MESSAGE_BOOK_BOUGHT= "&message=BOOK_BOUGHT";
+    public static final String MESSAGE_RESPONSE = "&message=";
 
     private Attribute(){
 

@@ -7,6 +7,7 @@ import by.nikita.web.controller.command.impl.UpdateUserPictureCommand;
 import by.nikita.web.exception.ControllerException;
 import org.apache.log4j.Logger;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-
+/**
+ * The {@code FileUploadingServlet} class represents FileUploadingServlet.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 @WebServlet(urlPatterns = "/FileUploadingServlet")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 5,
@@ -25,7 +31,6 @@ public class FileUploadingServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(FileUploadingServlet.class);
     private static final String UPLOAD_DIR = "D:\\Work\\picture\\";
     private static final String USER_PAGE = "user";
-    //private static final String BOOK_PAGE = "book";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

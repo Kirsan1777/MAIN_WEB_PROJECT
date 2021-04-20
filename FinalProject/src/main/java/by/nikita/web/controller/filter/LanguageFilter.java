@@ -9,7 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName ="LanguageFilter", urlPatterns = {("/*")})
+/**
+ * The {@code LanguageFilter} class represents Language Filter.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
+@WebFilter(filterName = "LanguageFilter", urlPatterns = {("/*")})
 public class LanguageFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

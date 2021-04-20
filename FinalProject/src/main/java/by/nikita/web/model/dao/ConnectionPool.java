@@ -1,6 +1,7 @@
 package by.nikita.web.model.dao;
 
 import by.nikita.web.exception.ConnectionDataBaseException;
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -11,9 +12,14 @@ import java.util.Queue;
 import java.util.ResourceBundle;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
-
+/**
+ * The {@code ConnectionPool} class represents ConnectionPool.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class ConnectionPool {
-
+    private static final Logger LOGGER = Logger.getLogger(ConnectionPool.class);
 
     private static final String RESOURCE_BUNDLE = "property.database";
     private static final String USERNAME = "username";
@@ -25,7 +31,11 @@ public class ConnectionPool {
     private final BlockingDeque<ProxyConnection> freeConnections;
     private final Queue<ProxyConnection> busyConnections;
 
-
+    /**
+     * get instance
+     *
+     * @return the instance
+     */
     public static ConnectionPool getInstance() {
         return instance;
     }
@@ -64,7 +74,7 @@ public class ConnectionPool {
         if (connection instanceof ProxyConnection && busyConnections.remove(connection)) {
             freeConnections.offer((ProxyConnection) connection);
         } else {
-            //LOGGER.log(Level.WARN, "Invalid connection to release");
+            LOGGER.log(Level.WARN, "Invalid connection to release");
         }
     }
 
@@ -75,7 +85,7 @@ public class ConnectionPool {
             }
             //deregisterDriver();
         } catch (SQLException | InterruptedException e) {
-            //LOGGER.log(Level.ERROR, "Can't destroy pool");
+            LOGGER.log(Level.ERROR, "Can't destroy pool");
         }
     }
 

@@ -14,7 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * The {@code ViewAllUsersCommand} class represents view all users.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class ViewAllUsersCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(ViewAllUsersCommand.class);
     private UserServiceImpl userService = UserServiceImpl.getInstance();

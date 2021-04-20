@@ -15,10 +15,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
+/**
+ * The {@code CreateNewComment} class represents create new comment command.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class CreateNewComment implements Command {
     private static final Logger LOGGER = Logger.getLogger(CreateNewComment.class);
-    BookServiceImpl bookService = BookServiceImpl.getInstance();
+    private BookServiceImpl bookService = BookServiceImpl.getInstance();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

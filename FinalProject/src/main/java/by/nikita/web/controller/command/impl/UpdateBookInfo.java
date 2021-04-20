@@ -15,7 +15,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+/**
+ * The {@code UpdateBookInfo} class represents update book info.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class UpdateBookInfo implements Command {
 
     private BookServiceImpl bookService = BookServiceImpl.getInstance();

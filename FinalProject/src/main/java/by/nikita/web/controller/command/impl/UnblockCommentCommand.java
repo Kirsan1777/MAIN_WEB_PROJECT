@@ -12,7 +12,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+/**
+ * The {@code UnblockCommentCommand} class represents unblock comment.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class UnblockCommentCommand implements Command {
     private static final int UNBLOCK_COMMENT_VALUE =  0;
     private Transaction transaction = Transaction.getInstance();

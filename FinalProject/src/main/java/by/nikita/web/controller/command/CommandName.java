@@ -1,5 +1,10 @@
 package by.nikita.web.controller.command;
-
+/**
+ * The {@code CommandName} class represents command name.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public enum CommandName {
     REGISTRATION,
     LOGINATION,

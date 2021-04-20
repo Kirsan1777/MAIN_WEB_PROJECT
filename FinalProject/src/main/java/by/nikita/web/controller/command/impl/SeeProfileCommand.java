@@ -15,9 +15,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+/**
+ * The {@code SeeProfileCommand} class represents see profile user.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class SeeProfileCommand implements Command {
-    UserServiceImpl userService = UserServiceImpl.getInstance();
+    private UserServiceImpl userService = UserServiceImpl.getInstance();
     private static final Logger LOGGER = Logger.getLogger(SeeProfileCommand.class);
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

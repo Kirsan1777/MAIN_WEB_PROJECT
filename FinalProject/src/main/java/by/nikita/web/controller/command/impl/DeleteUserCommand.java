@@ -12,7 +12,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+/**
+ * The {@code DeleteUserCommand} class represents delete user command.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class DeleteUserCommand implements Command {
     private UserServiceImpl userService = UserServiceImpl.getInstance();
     private static final Logger LOGGER = Logger.getLogger(DeleteUserCommand.class);
@@ -21,7 +26,6 @@ public class DeleteUserCommand implements Command {
         RequestDispatcher requestDispatcher;
         String idUserString = request.getParameter(Attribute.USERS_ID);
         int idUser = Integer.parseInt(idUserString);
-
         try {
             userService.deleteUser(idUser);
             requestDispatcher = request.getRequestDispatcher(PagePath.MAIN_INDEX_PAGE_COMMAND);

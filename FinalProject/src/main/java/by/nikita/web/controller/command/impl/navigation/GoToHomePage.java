@@ -17,7 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * The {@code GoToHomePage} class represents profile page.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class GoToHomePage implements Command {
     private static final Logger LOGGER = Logger.getLogger(GoToHomePage.class);
     private UserServiceImpl userService = UserServiceImpl.getInstance();
@@ -33,8 +38,8 @@ public class GoToHomePage implements Command {
             request.setAttribute(Attribute.BALANCE, userService.getBalance(user.getId()));
             requestDispatcher = request.getRequestDispatcher(PagePath.HOME_PAGE);
             requestDispatcher.forward(request, response);
-        }catch (ServiceException ex){
-            LOGGER.warn("Can't block user", ex);
+        } catch (ServiceException ex) {
+            LOGGER.warn("Can't go to the home page", ex);
             response.sendRedirect(PagePath.ERROR_PAGE);
         }
 

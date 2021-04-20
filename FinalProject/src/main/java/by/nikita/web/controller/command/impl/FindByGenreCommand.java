@@ -14,10 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * The {@code FindByGenreCommand} class represents find book by genre command.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class FindByGenreCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(FindByGenreCommand.class);
-    BookServiceImpl bookService = BookServiceImpl.getInstance();
+    private BookServiceImpl bookService = BookServiceImpl.getInstance();
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(PagePath.SEARCH_PAGE);

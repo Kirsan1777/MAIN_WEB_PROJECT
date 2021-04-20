@@ -13,7 +13,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+/**
+ * The {@code BlockBookCommand} class represents block book command.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class BlockBookCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(BlockBookCommand.class);
     private static final BookServiceImpl bookService = BookServiceImpl.getInstance();

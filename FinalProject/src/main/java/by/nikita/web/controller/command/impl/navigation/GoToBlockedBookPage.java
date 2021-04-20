@@ -8,6 +8,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+/**
+ * The {@code GoToBlockedBookPage} class represents blocked page.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 
 public class GoToBlockedBookPage implements Command {
     @Override

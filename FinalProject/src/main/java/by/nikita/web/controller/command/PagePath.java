@@ -1,6 +1,11 @@
 package by.nikita.web.controller.command;
-
-public class PagePath {//наименования страница их адреса сюда записать надо будет
+/**
+ * The {@code PagePath} class represents transition paths.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
+public class PagePath {
     public final static String AUTHOR_PAGE = "/WEB-INF/jsp/author_page.jsp";
     public final static String BLOCKED_PAGE = "/WEB-INF/jsp/blocked_page.jsp";
     public final static String BLOCKED_BOOK_PAGE = "/WEB-INF/jsp/blocked_book.jsp";

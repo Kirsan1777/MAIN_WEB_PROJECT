@@ -9,7 +9,12 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
+/**
+ * The {@code UserRoleFilter} class represents User Role Filter.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 @WebFilter(urlPatterns = {("/*")})
     public class UserRoleFilter implements Filter {
         @Override

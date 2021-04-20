@@ -13,7 +13,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+/**
+ * The {@code GoToRedactBookPage} class represents redact book page.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class GoToRedactBookPage implements Command {
     private static final Logger LOGGER = Logger.getLogger(GoToMainBookPage.class);
     private BookServiceImpl bookService = BookServiceImpl.getInstance();
@@ -30,7 +35,7 @@ public class GoToRedactBookPage implements Command {
         } catch (ServiceException e) {
             requestDispatcher = request.getRequestDispatcher(PagePath.ERROR_PAGE);
             requestDispatcher.forward(request, response);
-            LOGGER.warn("message", e);
+            LOGGER.warn("Can't go to the redact book page", e);
         }
     }
 

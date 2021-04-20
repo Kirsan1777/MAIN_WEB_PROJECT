@@ -17,7 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-
+/**
+ * The {@code UpdateUserInfoCommand} class represents update user info.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class UpdateUserInfoCommand implements Command {
 
     private UserServiceImpl userService = UserServiceImpl.getInstance();

@@ -7,7 +7,12 @@ import by.nikita.web.controller.command.impl.Logout;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * The {@code CommandProvider} class represents command execution.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class CommandProvider {
     private Map<CommandName, Command> commands = new HashMap<>();
 

@@ -14,10 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
+/**
+ * The {@code UpdateUserPictureCommand} class represents update user picture.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class UpdateUserPictureCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(UpdateUserPictureCommand.class);
-    UserServiceImpl userService = UserServiceImpl.getInstance();
+    private UserServiceImpl userService = UserServiceImpl.getInstance();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,13 +35,13 @@ public class UpdateUserPictureCommand implements Command {
             User user = userService.findUserInformation((Integer)session.getAttribute(Attribute.ID));
             request.setAttribute(Attribute.USERS, user);
             userService.updateUserPicture(idUser, namePicture);
+           /* requestDispatcher = request.getRequestDispatcher(PagePath.HOME_PAGE_COMMAND);
+            requestDispatcher.forward(request,response);*/
+            response.sendRedirect(PagePath.HOME_PAGE_COMMAND);
         } catch (ServiceException e) {
             requestDispatcher = request.getRequestDispatcher(PagePath.ERROR_PAGE);
             requestDispatcher.forward(request, response);
             LOGGER.warn("Can't update user picture", e);
-        } finally {
-            requestDispatcher = request.getRequestDispatcher(PagePath.HOME_PAGE_COMMAND);
-            requestDispatcher.forward(request,response);
         }
     }
 }

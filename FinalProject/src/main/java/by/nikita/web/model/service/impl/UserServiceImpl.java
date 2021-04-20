@@ -18,6 +18,11 @@ public class UserServiceImpl implements UserService {
 
     private static final UserServiceImpl instance = new UserServiceImpl();
 
+    /**
+     * get instance
+     *
+     * @return the instance
+     */
     public static UserServiceImpl getInstance() {
         return instance;
     }
@@ -25,12 +30,13 @@ public class UserServiceImpl implements UserService {
     private UserServiceImpl() {
 
     }
+
     @Override
-    public User authorization(String login, String password) throws ServiceException{
+    public User authorization(String login, String password) throws ServiceException {
         User user;
         try {
             user = userDao.findUser(login, password);
-        }catch (DaoException ex){
+        } catch (DaoException ex) {
             throw new ServiceException(ex);
         }
         return user;
@@ -41,32 +47,32 @@ public class UserServiceImpl implements UserService {
         UserValidator validator = new UserValidator();
         boolean chek = false;
         chek = validator.validateUser(login, password);
-        if(chek){
-        try {
-            userDao.addUser(login, password);
-        }catch (DaoException ex){
-            throw new ServiceException(ex);
-        }
+        if (chek) {
+            try {
+                userDao.addUser(login, password);
+            } catch (DaoException ex) {
+                throw new ServiceException(ex);
+            }
         }
     }
 
     @Override
-    public List<User> getAllUsers() throws ServiceException{
+    public List<User> getAllUsers() throws ServiceException {
         List<User> users;
-        try{
+        try {
             users = userDao.getAllUsers();
-        }catch (DaoException ex){
+        } catch (DaoException ex) {
             throw new ServiceException(ex);
         }
         return users;
     }
 
     @Override
-    public List<User> getAllUsersInformation() throws ServiceException{
+    public List<User> getAllUsersInformation() throws ServiceException {
         List<User> users;
-        try{
+        try {
             users = userDao.getAllUsersInfo();
-        }catch (DaoException ex){
+        } catch (DaoException ex) {
             throw new ServiceException(ex);
         }
         return users;
@@ -84,9 +90,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(int idUser) throws ServiceException {
         UserValidator validator = new UserValidator();
-        if(validator.checkRoleUser(idUser)){
-
-        }else {
+        if (!validator.checkRoleUser(idUser)) {
             try {
                 bankDao.deleteUserCard(idUser);
                 userDao.deleteUserInfo(idUser);
@@ -100,15 +104,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUserRole(int idUser, int idRole) throws ServiceException {
         try {
-            //провести проверку на смену бан разбан пользователя, и вообще на смену, админа нельзя поменять
             userDao.updateUserRole(idUser, idRole);
-        }catch(DaoException ex){
+        } catch (DaoException ex) {
             throw new ServiceException(ex);
         }
     }
 
     @Override
-    public void updateUserPicture(int idUser, String picture) throws ServiceException{
+    public void updateUserPicture(int idUser, String picture) throws ServiceException {
         try {
             userDao.updatePicture(idUser, picture);
         } catch (DaoException e) {
@@ -117,9 +120,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUserInfo(User user) throws ServiceException{
+    public void updateUserInfo(User user) throws ServiceException {
         try {
-            if(user.getPassword() != null && !user.getPassword().equals("")){
+            if (user.getPassword() != null && !user.getPassword().equals("")) {
                 userDao.updateUserPassword(user);
             }
             userDao.updateUserInfo(user);
@@ -129,11 +132,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserById(int id) throws ServiceException{
+    public User findUserById(int id) throws ServiceException {
         User user;
         try {
             user = userDao.findUserById(id);
-        }catch (DaoException ex){
+        } catch (DaoException ex) {
             throw new ServiceException(ex);
         }
         return user;
@@ -162,7 +165,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateBalance(int idUser, double money) throws ServiceException{
+    public void updateBalance(int idUser, double money) throws ServiceException {
         try {
             bankDao.updateBalance(idUser, money);
         } catch (DaoException e) {
@@ -182,22 +185,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllUserByName(String name) throws ServiceException{
+    public List<User> getAllUserByName(String name) throws ServiceException {
         List<User> users;
-        try{
-            users = userDao.findBookByNameSort(name);
-        }catch (DaoException ex){
+        try {
+            users = userDao.findUserByNameSort(name);
+        } catch (DaoException ex) {
             throw new ServiceException(ex);
         }
         return users;
     }
 
     @Override
-    public List<User> getAllSortUsers(String sort) throws ServiceException{
+    public List<User> getAllSortUsers(String sort) throws ServiceException {
         List<User> users;
-        try{
+        try {
             users = userDao.getAllUsersBySort(sort);
-        }catch (DaoException ex){
+        } catch (DaoException ex) {
             throw new ServiceException(ex);
         }
         return users;

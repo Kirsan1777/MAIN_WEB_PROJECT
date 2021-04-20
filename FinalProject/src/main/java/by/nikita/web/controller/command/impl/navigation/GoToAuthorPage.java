@@ -17,7 +17,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * The {@code GoToAuthorPage} class represents author page.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class GoToAuthorPage implements Command {
     private static final Logger LOGGER = Logger.getLogger(GoToAuthorPage.class);
     private BookServiceImpl bookService = BookServiceImpl.getInstance();
@@ -35,7 +40,7 @@ public class GoToAuthorPage implements Command {
             requestDispatcher = request.getRequestDispatcher(PagePath.AUTHOR_PAGE);
             requestDispatcher.forward(request, response);
         } catch (ServiceException e) {
-            LOGGER.warn("Can't block user", e);
+            LOGGER.warn("Can't go to the author page", e);
             response.sendRedirect(PagePath.ERROR_PAGE);
         }
     }

@@ -13,7 +13,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+/**
+ * The {@code DeleteBookCommand} class represents delete book command.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class DeleteBookCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(DeleteBookCommand.class);
     private BookServiceImpl bookService = BookServiceImpl.getInstance();

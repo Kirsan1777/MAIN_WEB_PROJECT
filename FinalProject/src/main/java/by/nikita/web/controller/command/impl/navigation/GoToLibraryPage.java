@@ -16,7 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * The {@code GoToLibraryPage} class represents library page.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class GoToLibraryPage implements Command {
 
     @Override

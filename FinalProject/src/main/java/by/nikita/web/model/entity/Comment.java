@@ -1,7 +1,12 @@
 package by.nikita.web.model.entity;
 
 import java.util.Objects;
-
+/**
+ * The {@code Comment} class represents Comment.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class Comment {
     private int id;
     private String comment;

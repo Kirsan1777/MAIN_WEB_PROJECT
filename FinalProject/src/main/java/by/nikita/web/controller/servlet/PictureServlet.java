@@ -1,6 +1,5 @@
 package by.nikita.web.controller.servlet;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-
+/**
+ * The {@code PictureServlet} class represents PictureServlet.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 @WebServlet(urlPatterns = "/picture/*")
 public class PictureServlet extends HttpServlet {
 
