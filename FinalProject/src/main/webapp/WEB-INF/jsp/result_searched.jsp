@@ -1,52 +1,61 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <fmt:setLocale value='${sessionScope.language}' scope="session"/>
 <fmt:bundle basename="property.text">
-<%--
-  Created by IntelliJ IDEA.
-  User: Asus
-  Date: 05.04.2021
-  Time: 22:28
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-    <style>
-        <%@include file="/WEB-INF/css/basic-style.css" %>
-    </style>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body class="bg-image">
-<jsp:include page="header.jsp" />
-
-<h3><fmt:message key="users"/></h3>
-<div class="tableInformation1_wrapper">
-    <div class="tableInformation1">
-        <c:forEach var="n" items="${users}">
-                <div class="TextForm1">
-                <div class="descriptionForm">
-                    <img src="picture/${n.picture}" width="80" height="120"/>
-                    <p class="textSizeMin"><c:out value="${n.name}"/></p>
-                    <p class="textSizeMin"> <fmt:message key="cost"/>: <c:out value="${n.dateRegistration}"/>р</p>
-                </div>
-                <div class="formControllerCentre">
-                    <a class="acceptButton btn-outline-success" href="Controller?command=gotoauthorpage&idauthor=${n.id}"><fmt:message key="watch"/></a>
-                </div>
-            </div>
-        </c:forEach>
+    <%--
+      Created by IntelliJ IDEA.
+      User: Asus
+      Date: 05.04.2021
+      Time: 22:28
+      To change this template use File | Settings | File Templates.
+    --%>
+    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+    <html>
+    <head>
+        <title>Title</title>
+        <style>
+            <%@include file="/WEB-INF/css/basic-style.css" %>
+        </style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body class="bg-image">
+    <jsp:include page="header.jsp"/>
+    <div class="boxColumn" style="margin-top: 20px">
+        <h1 class="boxColumn"><fmt:message key="users"/>: </h1>
+        <c:if test="${ fn:length(users) < 1 }">
+            <h1 class="boxColumn" style="font-weight: normal"><fmt:message key="no_results_were_found_for_your_search"/></h1>
+        </c:if>
     </div>
-</div>
 
-<div class="boxColumn">
+    <div class="tableInformation1_wrapper">
+        <div class="tableInformation1">
+            <c:forEach var="n" items="${users}">
+                <div class="TextForm1">
+                    <div class="descriptionForm">
+                        <img src="picture/${n.picture}" width="80" height="120"/>
+                        <p class="textSizeMin"><c:out value="${n.name}"/></p>
+                        <p class="textSizeMin"><fmt:message key="cost"/>: <c:out value="${n.dateRegistration}"/>р</p>
+                    </div>
+                    <div class="formControllerCentre">
+                        <a class="acceptButton btn-outline-success"
+                           href="Controller?command=gotoauthorpage&idauthor=${n.id}"><fmt:message key="watch"/></a>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
 
     <div class="boxColumn">
-        <h1><fmt:message key="books"/> :</h1>
 
-        <c:forEach var="n" items="${books}">
+        <div class="boxColumn">
+            <h1><fmt:message key="books"/> :</h1>
+            <c:if test="${ fn:length(books) < 1 }">
+                <div style="font-size: 25px; "><fmt:message key="no_results_were_found_for_your_search"/></div>
+            </c:if>
+            <c:forEach var="n" items="${books}">
                 <div class="formControllerColumn">
                     <div>
                         <img src="picture/${n.photoReference}" width="155" height="215"/>
@@ -64,7 +73,8 @@
                                     <input type="hidden" name="idbook" value="${n.id}"/>
                                     <input type="hidden" name="idauthor" value="${n.authorId}"/>
                                     <input type="hidden" name="cost" value="${n.cost}"/>
-                                    <input class="twoButton acceptButton btn-outline-success" type="submit" name="sumbit"
+                                    <input class="twoButton acceptButton btn-outline-success" type="submit"
+                                           name="sumbit"
                                            value="<fmt:message key="buy"/>"/>
                                 </form>
                             </c:if>
@@ -72,7 +82,8 @@
                             <c:if test="${role == 'GUEST'}">
                                 <form action="Controller" method="post">
                                     <input type="hidden" name="command" value="gotologinpage"/>
-                                    <input class="twoButton acceptButton btn-outline-success" type="submit" name="sumbit"
+                                    <input class="twoButton acceptButton btn-outline-success" type="submit"
+                                           name="sumbit"
                                            value="<fmt:message key="buy"/>"/>
                                 </form>
                             </c:if>
@@ -88,11 +99,11 @@
                     </div>
                 </div>
 
-        </c:forEach>
+            </c:forEach>
+        </div>
+
     </div>
 
-</div>
-
-</body>
+    </body>
 </fmt:bundle>
 </html>

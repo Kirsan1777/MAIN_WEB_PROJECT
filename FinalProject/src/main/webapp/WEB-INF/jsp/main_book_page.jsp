@@ -78,6 +78,9 @@
                                 </form>
                             </c:if>
                         </div>
+                        <c:if test="${message == 'BOOK_NOT_BUY'}">
+                            BOOK NOT BUY
+                        </c:if>
                     </div>
                 </div>
             </div>
@@ -102,7 +105,7 @@
                                     <input type="hidden" name="command" value="blockbookcommand"/>
                                     <input type="hidden" name="idbook" value=${books.id}/>
                                     <input class="acceptButton btn-outline-danger" type="submit" name="sumbit"
-                                           value="<fmt:message key="block"/>"/>
+                                           value="<fmt:message key="block_book"/>"/>
                                 </c:if>
                                 <c:if test="${books.access == 1}">
                                     <input type="hidden" name="command" value="unblockbookcommand"/>

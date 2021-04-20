@@ -44,7 +44,7 @@
                                                                 height="40"/></a>
             <div class="navbar-nav mr-auto">
                 <a class="button1" href="Controller?command=gotomainindexpage"><fmt:message key="main"/></a>
-                <a class="button1" href="Controller?command=sortbookcommand&sort=name_book"><fmt:message
+                <a class="button1" style="text-align: row" href="Controller?command=sortbookcommand&sort=name_book"><fmt:message
                         key="library"/></a>
                 <c:if test="${role == 'ADMIN'}">
                     <a class="button1" href="Controller?command=viewalluserscommand&sort=id_user"><fmt:message
@@ -82,11 +82,7 @@
             <c:if test="${role != 'GUEST'}">
                 <a class="button1" href="Controller?command=logout"><fmt:message key="logout"/></a>
             </c:if>
-
-
-
         </div>
-
         <div class="col-sm-1">
             <form action="Controller" method="post">
                 <input type="hidden" name="command" value="ChooseLocaleCommand">
@@ -94,10 +90,7 @@
                 <input class="button2 bg-color" type="submit" name="sumbit" value=<fmt:message key="language" /> />
             </form>
         </div>
-
     </nav>
-
-
     </body>
 </fmt:bundle>
 </html>

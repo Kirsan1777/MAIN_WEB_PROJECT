@@ -24,7 +24,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 <div class="boxColumn author">
     <div class="descriptionAuthor">
-        <form action="Controller" method="post">
+        <form action="Controller" method="get">
             <input type="hidden" name="command" value="createnewuser" />
             <div>
                 <p class="rowText"><fmt:message key="login"/></p>
@@ -53,9 +53,14 @@
             <div>
                 <c:if test="${message == 'THIS_LOGIN_IS_ALREADY_USED'}">
                 <p>
-                    <span class="textSizeMin" style="color: red; ">This login is already used</span>
+                    <span class="textSizeMin" style="color: red; "><fmt:message key="this_login_is_already_used"/></span>
                 <p>
                     </c:if>
+                        <c:if test="${message == 'INCORRECT_INPUT'}">
+                    <p>
+                        <span class="textSizeMin" style="color: red; "><fmt:message key="incorrect_input_reg"/></span>
+                    <p>
+                        </c:if>
             </div>
         </form>
 

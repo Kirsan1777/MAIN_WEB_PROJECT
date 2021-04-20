@@ -30,7 +30,7 @@
 
 
 <div class="login brd" id = "fon">
-    <form action="Controller" method="post" class="login">
+    <form action="Controller" method="get" class="login">
         <input type="hidden" name="command" value="logination" />
         <div>
             <h3><fmt:message key="login"/></h3>

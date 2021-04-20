@@ -23,8 +23,12 @@
     <body class="bg-image">
     <jsp:include page="header.jsp"/>
     <div>
-        <fmt:message key="sort_by"/>:
         <div class="buttonInRow ">
+            <div>
+                <fmt:message key="sort_by"/>:
+                <a class="textSizeMin" href="Controller?command=viewalluserscommand&sort=rating DESC"><fmt:message
+                        key="by_rating"/></a>
+            </div>
             <div>
                 <a class="textSizeMin" href="Controller?command=viewalluserscommand&sort=rating DESC"><fmt:message
                         key="by_rating"/></a>
@@ -89,7 +93,8 @@
                         <form action="Controller" method="get">
                             <input type="hidden" name="command" value="blockusercommand"/>
                             <input type="hidden" name="iduser" value="${n.id}"/>
-                            <input class="btn btn-outline-danger  my-2 my-sm-0" type="submit" name="sumbit" value="<fmt:message key="block"/>"/>
+                            <input class="btn btn-outline-danger  my-2 my-sm-0" type="submit" name="sumbit"
+                                   value="<fmt:message key="block"/>"/>
                         </form>
 
 

@@ -18,6 +18,11 @@
         <location>/WEB-INF/jsp/error.jsp</location>
     </error-page>
 
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/jsp/error.jsp</location>
+    </error-page>
+
     <servlet-mapping>
         <servlet-name>MyController</servlet-name>
         <url-pattern>/Controller</url-pattern>

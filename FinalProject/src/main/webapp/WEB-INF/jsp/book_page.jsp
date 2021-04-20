@@ -36,12 +36,12 @@
 
 <c:if test="${message == 'INCORRECT_INPUT'}">
 <p>
-    <span style="color: green; ">Please check correct input information</span>
+    <span style="color: green; "><fmt:message key="please_check_accuracy_of_input_information"/></span>
 <p>
     </c:if>
     <c:if test="${pageContext.request.getParameter('message') == 'CREATE_BOOK'}">
 <p>
-    <span style="color: green; ">Your book was added</span>
+    <span style="color: green; "><fmt:message key="your_book_was_added"/></span>
 <p>
     </c:if>
 

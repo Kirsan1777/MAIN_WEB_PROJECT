@@ -12,12 +12,14 @@
 <html>
 <head>
     <title>Error</title>
+    <style>
+        <%@include file="/WEB-INF/css/header.css" %>
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-    <body>
-    <p>
-        We have problem with site!
-        Please wait
-    </p>
+    <body class="bg-image404">
     <a href="Controller?command=gotomainindexpage">Ok</a>
     </body>
 </fmt:bundle>
