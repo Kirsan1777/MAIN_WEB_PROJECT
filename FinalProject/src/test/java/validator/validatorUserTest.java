@@ -40,7 +40,7 @@ public class validatorUserTest {
         boolean isValidLogin = validator.validateEmail(login);
         assertFalse(isValidLogin);
     }
-///////////////////////////////////////////////////////
+
     @DataProvider(name = "validLogin")
     private Object[][] createValidLogin() {
         return new Object[][]{
