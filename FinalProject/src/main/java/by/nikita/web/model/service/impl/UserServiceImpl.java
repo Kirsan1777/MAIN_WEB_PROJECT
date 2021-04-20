@@ -10,6 +10,12 @@ import by.nikita.web.model.validator.UserValidator;
 
 import java.util.List;
 
+/**
+ * The {@code UserServiceImpl} class represents User Service Implements.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class UserServiceImpl implements UserService {
 
     private UserDaoImpl userDao = UserDaoImpl.getInstance();
