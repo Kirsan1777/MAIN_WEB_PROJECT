@@ -15,7 +15,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
+/**
+ * The {@code UserDaoImpl} class represents  User Dao Implements.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class UserDaoImpl implements UserDAO {
 
     private static final UserDaoImpl instance = new UserDaoImpl();
