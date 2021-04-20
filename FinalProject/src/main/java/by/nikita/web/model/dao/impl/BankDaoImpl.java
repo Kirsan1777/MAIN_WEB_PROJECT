@@ -13,6 +13,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * The {@code BankDaoImpl} class represents BankDaoImpl.
+ *
+ * @author Belyaev Nikita
+ * @version 1.0
+ */
 public class BankDaoImpl implements BankDAO {
 
     private static final BankDaoImpl instance = new BankDaoImpl();
