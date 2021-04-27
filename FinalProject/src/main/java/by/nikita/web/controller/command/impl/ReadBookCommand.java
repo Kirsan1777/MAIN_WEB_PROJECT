@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+
 /**
  * The {@code ReadBookCommand} class represents read book.
  *
@@ -36,7 +37,7 @@ public class ReadBookCommand implements Command {
 
         try {
             book = bookService.findBook(idBook);
-            if(checkBookAccess(idBook, idUser) || idUser==book.getAuthorId()){
+            if (checkBookAccess(idBook, idUser) || idUser == book.getAuthorId()) {
                 request.setAttribute(Attribute.ACCESS, book.getAccess());
                 request.setAttribute(Attribute.TEXT, book.getText());
                 requestDispatcher = request.getRequestDispatcher(PagePath.TEXT_PAGE_COMMAND);
@@ -53,14 +54,10 @@ public class ReadBookCommand implements Command {
         }
     }
 
-    private boolean checkBookAccess(int idBook, int idUser) {
+    private boolean checkBookAccess(int idBook, int idUser) throws ServiceException {
         boolean doesExist = false;
-        try {
-            List<Book> myBook = bookService.getMyBoughtBook(idUser);
-             doesExist = myBook.stream().map(Book::getId).anyMatch(b -> b == idBook);
-        } catch (ServiceException e) {
-            //todo
-        }
+        List<Book> myBook = bookService.getMyBoughtBook(idUser);
+        doesExist = myBook.stream().map(Book::getId).anyMatch(b -> b == idBook);
         return doesExist;
     }
 }

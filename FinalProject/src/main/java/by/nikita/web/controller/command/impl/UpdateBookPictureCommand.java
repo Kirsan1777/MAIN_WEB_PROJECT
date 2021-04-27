@@ -31,9 +31,9 @@ public class UpdateBookPictureCommand implements Command {
             if(request.getAttribute(Attribute.BOOKS_ID) != null){
                 int idBook = Integer.parseInt(request.getParameter(Attribute.BOOKS_ID));
                 bookService.updateBookPicture(idBook, namePicture);
-                //request.setAttribute(Attribute.BOOKS, idBook);
+                request.setAttribute(Attribute.BOOKS, idBook);
                 requestDispatcher = request.getRequestDispatcher(PagePath.REDACT_BOOK_PAGE_COMMAND);
-                requestDispatcher.forward(request,response);
+                //requestDispatcher.forward(request,response);
                 //response.sendRedirect(PagePath.REDACT_BOOK_PAGE_COMMAND + "&books=" + idBook);
             }else{
                 requestDispatcher = request.getRequestDispatcher(PagePath.BOOK_PAGE_COMMAND);

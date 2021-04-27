@@ -9,7 +9,7 @@ public class TimeTag extends SimpleTagSupport {
     @Override
     public void doTag() throws IOException {
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("hh-mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh-mm");
         getJspContext().getOut().print(formatter.format(date));
     }
 

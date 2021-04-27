@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+
 /**
  * The {@code GoToLibraryPage} class represents library page.
  *
@@ -27,7 +28,7 @@ public class GoToLibraryPage implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher;
-            requestDispatcher = request.getRequestDispatcher(PagePath.LIBRARY_PAGE);
-            requestDispatcher.forward(request, response);
+        requestDispatcher = request.getRequestDispatcher(PagePath.LIBRARY_PAGE);
+        requestDispatcher.forward(request, response);
     }
 }

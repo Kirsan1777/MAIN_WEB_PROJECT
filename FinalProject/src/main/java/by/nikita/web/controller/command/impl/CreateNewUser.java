@@ -43,7 +43,6 @@ public class CreateNewUser implements Command {
         user.setName(request.getParameter(Attribute.NAME));
         user.setDateRegistration(stamp.toString());
         try {
-            //TODO 2 сообщения, а не одно
             if(validator.validateUser(user.getLogin(), user.getEmail())) {
                 if(userService.findUserByLogin(user.getLogin()) == null){
                     transaction.createAccountUserAndBank(user);

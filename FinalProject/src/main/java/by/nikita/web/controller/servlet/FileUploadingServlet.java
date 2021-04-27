@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+
 /**
  * The {@code FileUploadingServlet} class represents FileUploadingServlet.
  *
@@ -54,11 +55,11 @@ public class FileUploadingServlet extends HttpServlet {
             }
         });
         request.setAttribute(Attribute.PICTURE, fileName.toString());
-        if(page.equals(USER_PAGE)) {
+        if (page.equals(USER_PAGE)) {
             new UpdateUserPictureCommand().execute(request, response);
             //request.getRequestDispatcher(PagePath.HOME_PAGE_COMMAND).forward(request, response);
-        }else{
-            if(request.getParameter(Attribute.BOOKS_ID) != null && !request.getParameter(Attribute.BOOKS_ID).equals("")){
+        } else {
+            if (request.getParameter(Attribute.BOOKS_ID) != null && !request.getParameter(Attribute.BOOKS_ID).equals("")) {
                 request.setAttribute(Attribute.BOOKS_ID, request.getParameter(Attribute.BOOKS_ID));
             }
             request.setAttribute(Attribute.PAGE, page);
@@ -66,7 +67,6 @@ public class FileUploadingServlet extends HttpServlet {
             new UpdateBookPictureCommand().execute(request, response);
             //request.getRequestDispatcher(PagePath.BOOK_PAGE_COMMAND).forward(request, response);
         }
-
     }
 
     @Override
